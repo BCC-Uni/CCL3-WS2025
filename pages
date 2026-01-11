@@ -1,1 +1,104 @@
+# CCL3 – WS2025  
+## App Name: LingoDeck
+
+### Brief Description
+Lingodeck is a native Android app designed to make language learning efficient and permanent.
+Built with Kotlin and Jetpack Compose, it uses a Spaced Repetition System (SRS) algorithm to schedule flashcard reviews at the optimal moment, just before a user is likely to forget a word.
+This way users can maximize their retention while not wasting study time.
+---
+
+## Team Members
+- Diana Simonicova (cc241046)
+- Tijana Mijatovic (cc241005)
+
+---
+
+## App Concept
+
+### Use Case
+Efficient Vocabulary Acquisition: The primary use case is daily vocabulary study for language learners.
+Instead of reviewing static lists or paper flashcards (which leads to over-studying known words and under-studying difficult ones), the user opens Lingodeck once a day.
+The app automatically presents only the specific cards that are "due" based on the user's past performance, handling the complex scheduling logic in the background.
+
+---
+
+### Target User
+The target users are:
+- Students learning a foreign language  
+- Self-learners preparing for exams or travel  
+- Busy learners who want to maximise learning results in minimal time
+*Anyone learning a new language who wants to optimize their vocab studying.
+
+Users typically use the app on their Android smartphone in short, frequent sessions.
+
+---
+
+### Goal of the App
+The goal of LingoDeck is to make language learning easier and more effective by reducing unnecessary repetition and focusing on long-term memory retention.
+
+---
+
+### The Problem
+Traditional memorisation of vocabulary lists rarely leads to long-term retention. Learners often spend a lot of time reviewing words they already know while forgetting difficult ones.
+
+---
+
+### The Solution
+LingoDeck provides a modern Android-based flashcard application that uses a Spaced Repetition System (SRS) to optimise learning sessions.
+
+---
+
+### Core Mechanism: Spaced Repetition System (SRS)
+
+#### How It Works
+- The app tracks the user’s performance on every individual flashcard  
+- Based on correct or incorrect answers, an algorithm calculates optimal review intervals  
+- Easy cards are shown less frequently, while difficult cards are reviewed more often  
+
+This ensures that users spend less time studying while remembering more.
+
+---
+
+### Expected Outcome
+Users study more efficiently, reduce unnecessary repetition, and achieve better long-term vocabulary retention with less overall effort.
+
+---
+
+## Hi-Fi Prototype & User Flow
+
+### Main User Flow
+The user flow, demonstrates how a user navigates from opening the app to completing a study session.
+
+graph TD:
+    A[Start App] --> B[<b>Deck List Screen</b><br/>View all language decks]
+    B -->|Click '+'| C[<b>Add Deck Screen</b><br/>Create new topic]
+    C -->|Save| B
+    
+    B -->|Select 'German'| D[<b>Deck Detail Screen</b><br/>View Chart & Stats]
+    
+    D -->|Click 'Add Flashcard'| E[<b>Add Card Screen</b><br/>Input Front/Back]
+    E -->|Save| D
+    
+    D -->|Click 'Start Review'| F[<b>Review Screen</b><br/>Front of Card appears]
+    
+    F -->|Tap Card| G[<b>Review Screen</b><br/>Back of Card revealed]
+    
+    G -->|Swipe Left| H[<b>Grading: Fail</b><br/>Reset Interval to 1 day]
+    G -->|Swipe Right| I[<b>Grading: Pass</b><br/>Increase Interval (e.g. 6 days)]
+    
+    H --> J{More Cards?}
+    I --> J
+    
+    J -->|Yes| F
+    J -->|No| K[<b>Summary State</b><br/>'Review Complete']
+    K -->|Back| D
+
+Prototype: https://www.figma.com/design/8KR3xW8ZMAUmz3y2Wo41zC/Hi-Fi-prototype---user-flow?node-id=1-46&m=dev
+
+####Screen Breakdown:
+
+Deck List (Home): The entry point where users manage different languages (e.g., German, Spanish).
+Deck Detail (Dashboard): A view showing the "Upcoming Reviews" bar chart and a list of all cards. This allows the user to see their workload for the week.
+Study Mode (The Core Loop): The clean interface where cards are presented. Users interact via gestures (swiping) to grade their memory retention, which immediately updates the database schedule.
+
 
